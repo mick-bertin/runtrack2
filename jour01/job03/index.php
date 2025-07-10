@@ -31,7 +31,7 @@ echo "$boolean $entier $chaineDeCaractere $flottant";
          <tr>
             <td><?php echo gettype($boolean)?></td>
             <td><?php echo"$chaineDeCaractere"?></td>
-            <td><?php echo"$entier"?></td>
+            <td><?php echo"$flottant"?></td>
          </tr>
 
   </table>
