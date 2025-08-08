@@ -6,7 +6,7 @@ nombre d'occurrences de consonnes et de voyelles de $str.
 Affichez ces résultats dans un tableau <table> html qui a comme <thead> “Voyelles” et
         “Consonnes”.. ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "z"],["a", "e", "i", "o", "u"]-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -37,7 +37,7 @@ Affichez ces résultats dans un tableau <table> html qui a comme <thead> “Voye
         }
     </style>
     <?php
-    $str = "On n’est pas le meilleur quand on le croit mais quand on le sait";
+    $str = "On n’est pas le meilleur quand on le croit mais quand onrt le sait";
     $dic = [
         "consonnes" => ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "z"],
         "voyelles" => ["a", "e", "i", "o", "u", "O"],
@@ -52,7 +52,7 @@ Affichez ces résultats dans un tableau <table> html qui a comme <thead> “Voye
             }
         }
     }
-    echo "<br>";
+
     for ($y = 0; isset($str[$y]); $y++) {
         foreach ($dic["voyelles"] as $voyelle) {
             if ($str[$y] == $voyelle) {

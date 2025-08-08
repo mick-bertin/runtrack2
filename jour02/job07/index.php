@@ -9,7 +9,7 @@ puis je m'occupe de la base en lui mettant la taille horizontale qui touche chaq
   -->
 
 <?php
-$hauteur = 5;
+$hauteur = 15;
 $base = $hauteur;
 for ($i = 0; $i <= $hauteur; $i++) {
     // echo "$i";

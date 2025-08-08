@@ -13,7 +13,7 @@ $tableNb = [2, 3, 4, 5, 6, 7, 8, 9];
 $ifnbpremier = true;
 //  parcourir tous les nombres de 2 a 1000
 for ($i = 2; $i <= 1000; $i++) {
-    //  parcourir  l ensemble du  tableau de nombre 
+    //  parcourir  l ensemble du  tableau de valeur ($tableNb)
     foreach ($tableNb as $nombre) {
         // si le nombres est divisible par un autre nombres que par lui meme ou par un et que les reste vault 0 
         if ($i % $nombre == 0 && $nombre != $i) {
@@ -24,7 +24,7 @@ for ($i = 2; $i <= 1000; $i++) {
 
     //   si on affiche le nombre 
     if ($ifnbpremier) {
-        echo "$i <br> ";
+        echo "$i <br/> ";
     }
     //  verification du  nombre 
     $ifnbpremier = true;

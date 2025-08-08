@@ -16,21 +16,16 @@ facilement. -->
 
 $largeur = 20;
 $hauteur = 10;
-
-
-
-
 for ($i = 0; $i <= $largeur; $i++) {
     // echo $i; 
     echo "<br>";
     for ($h = 1; $h <= $hauteur; $h++) {
-        echo $h;
+        // echo $h;
 
         if ($i == 0 || $i == $largeur  || $h == 1 || $h == $hauteur) {
-            echo ".";
-            echo "\n";
+            echo "*";
+            echo " ";
         } else {
-
             echo "\n";
             echo " ";
         }
