@@ -14,26 +14,105 @@
                     “c”.
                     ● “plateforme”, une fonction qui prend en paramètre “$str” : plateforme($str).
                     Elle affiche “$str” en ajoutant un “_” aux mots finissant par “me”. -->
-<!DOCTYPE html>
-<html lang="en">
+
+
+
+
+<?php
+// --- Fonction gras ---
+// Met en <b> les mots commençant par une majuscule
+function gras($str)
+{
+    $mots = explode(" ", $str);
+    foreach ($mots as &$mot) {
+        if (preg_match('/^[A-Z-a-z]/', $mot)) {
+            $mot = "<b>$mot</b>";
+        }
+    }
+    return implode(" ", $mots);
+}
+
+// --- Fonction cesar ---
+// Décale chaque lettre de $decalage (2 par défaut)
+function cesar($str, $decalage = 2)
+{
+    $res = "";
+    for ($i = 0; $i < strlen($str); $i++) {
+        $char = $str[$i];
+
+        if (ctype_alpha($char)) {
+            $isMaj = ctype_upper($char);
+            $a = $isMaj ? ord('A') : ord('a');
+            $pos = ord($char) - $a;
+            $newPos = ($pos + $decalage) % 26;
+            $res .= chr($a + $newPos);
+        } else {
+            $res .= $char; // ne pas changer chiffres, espaces, etc.
+        }
+    }
+    return $res;
+}
+
+// --- Fonction plateforme ---
+// Ajoute "_" aux mots finissant par "me"
+function plateforme($str)
+{
+    $mots = explode(" ", $str);
+    foreach ($mots as &$mot) {
+        if (str_ends_with($mot, "me")) {
+            $mot .= "_";
+        }
+    }
+    return implode(" ", $mots);
+}
+
+// --- Traitement du formulaire ---
+$resultat = "";
+if (!empty($_POST["str"]) && !empty($_POST["fonction"])) {
+    $str = $_POST["str"];
+    $fonction = $_POST["fonction"];
+
+    if ($fonction === "gras") {
+        $resultat = gras($str);
+    } elseif ($fonction === "cesar") {
+        $resultat = cesar($str, 2);
+    } elseif ($fonction === "plateforme") {
+        $resultat = plateforme($str);
+    }
+}
+?>
+
+<!doctype html>
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Formulaire Transformation</title>
 </head>
 
 <body>
-    <form action="index.php" method="get">
-        <input type="text" name="str" id="str">
-        <select name="style" id="style">
 
-            <option value="style1.css">Style 1</option>
-            <option value="style2.css">Style 2</option>
-            <option value="style3.css">Style 3</option>
+    <h2>Transformateur de texte</h2>
+
+    <form method="post">
+        <label for="str">Texte :</label>
+        <input type="text" id="str" name="str" required>
+
+        <label for="fonction">Choisissez une fonction :</label>
+        <select id="fonction" name="fonction" required>
+            <option value="gras">Gras</option>
+            <option value="cesar">César</option>
+            <option value="plateforme">Plateforme</option>
         </select>
-        <input type="submit" value="valider">
+
+        <button type="submit">Valider</button>
     </form>
+
+    <?php if ($resultat): ?>
+        <h3>Résultat :</h3>
+        <p><?= $resultat ?></p>
+    <?php endif; ?>
+
 </body>
 
 </html>

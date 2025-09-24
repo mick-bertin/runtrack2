@@ -1,63 +1,49 @@
-<!-- // Créez un formulaire qui contient un input de type de text nommé “prenom” et un bouton// submit. Lorsque l’on valide le formulaire, le prénom est ajouté dans une variable de// session. Afficher l’ensemble des prénoms.// Ajoutez un bouton nommé “reset” qui permet de réinitialiser la liste.session_start();// $_POST['prenom'] =>
- $prenom; // $keys = [//'valeur' =>
- $key,//'valeur' =>
- $key1// ];// $variable = "";// https://apprendre-php.com/tutoriels/tutoriel-12-traitement-des-formulaires-avec-get-et-post.html// https://apcpedagogie.com/recuperation-des-donnees-du-formulaire-en-php/// $keys =[//'prenom'=>
- $prenom ];// if (isset($_POST['envoyer'])){//// $_Session['prenom']=[] ;//echo $_POST['prenom'];// }// else {  // } -->
-
 <!-- Créez un formulaire qui contient un input de type de text nommé “prenom” et un bouton
 submit. Lorsque l’on valide le formulaire, le prénom est ajouté dans une variable de
 session. Afficher l’ensemble des prénoms.
 Ajoutez un bouton nommé “reset” qui permet de réinitialiser la liste. -->
-
 <?php
-session_start();
+session_start(); // Démarrer la session
 
-// Si un prenom a ete saisi
-if (isset($_POST["prenom"])) {
-    // Recuperer la valeur du champ prenom
-    $prenom = $_POST["prenom"];
-
-    // Si la liste des prenoms n existe pas encore dans la session
-    if (!isset($_SESSION["prenoms"])) {
-
-        // Cree un tableau vide
-        $_SESSION["prenoms"] = [];
-    }
+// Si le bouton reset est cliqué, on réinitialise la liste
+if (isset($_POST['reset'])) {
+    $_SESSION['prenoms'] = [];
 }
 
-
-
-
-if (isset($_POST["reset"])) {
-    session_unset();
+// Si un prénom est soumis, on l’ajoute à la session
+if (isset($_POST['prenom']) && !empty($_POST['prenom'])) {
+    $_SESSION['prenoms'][] = htmlspecialchars($_POST['prenom']);
 }
 
+// Initialiser la liste si elle n’existe pas encore
+if (!isset($_SESSION['prenoms'])) {
+    $_SESSION['prenoms'] = [];
+}
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des prénoms</title>
 </head>
 
 <body>
-    <form method="POST" action="">
-        <input type="text" placeholder="value" name="prenom">
-        </input>
-        <button type="submit" name="envoyer" value="submit">Envoyer</button>
-        <input type="submit" value='reset' name='reset'>
+    <h2>Ajouter un prénom</h2>
+
+    <!-- Formulaire  -->
+    <form method="post">
+        <input type="text" name="prenom" placeholder="Entrez un prénom">
+        <button type="submit">Ajouter</button>
+        <button type="submit" name="reset">Reset</button>
     </form>
-
-    <ul><?php
-        foreach ($_SESSION["prenoms"] as $prenom):
-        ?>
-
-            <li><?php echo $prenom;
-                ?>
-            </li>
+    <ul>
+        <?php foreach ($_SESSION['prenoms'] as $p) : ?>
+            <li><?= $p ?></li>
         <?php endforeach; ?>
     </ul>
-
-    </form>
+</body>
 
 </html>
