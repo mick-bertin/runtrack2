@@ -1,0 +1,16 @@
+.admin-table {
+  width: 80%;
+  margin: 30px auto;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #f2f2f2;
+}

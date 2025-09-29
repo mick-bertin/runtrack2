@@ -1,0 +1,19 @@
+body {
+  height: 100dvh;
+  background: url("../img/qui.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(18, 207, 30);
+  color: gold;
+}
+
+#description-d {
+  position: absolute;
+  bottom: 0;
+}
+#description-d p {
+  padding: 15px;
+}
+h3 {
+  text-align: center;
+}
